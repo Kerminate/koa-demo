@@ -7,7 +7,7 @@ const Router = require('koa-router')
 let home = new Router()
 
 // 子路由
-home.get('/', async(ctc) => {
+home.get('/', async(ctx) => {
   let html = `
     <ul>
       <li><a href="/page/helloworld">/page/helloworld</a></li>
