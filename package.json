@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "koa-bodyparser": "^3.2.0",
     "koa-router": "^7.2.1"
   }
 }
