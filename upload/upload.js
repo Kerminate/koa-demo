@@ -14,7 +14,7 @@ function mkdirsSync (dirname) {
     return true
   } else {
     if (mkdirsSync(path.dirname(dirname))) {
-      fs.mkdirsSync(dirname)
+      fs.mkdirSync(dirname) // 同步创建文件夹
       return true
     }
   }
@@ -80,10 +80,22 @@ function uploadFile (ctx, options) {
 
     // 解析结束事件
     busboy.on('finish', function () {
-      console.log('文件上出错')
-      reject(result)
+      console.log('文件上结束')
+      resolve(result)
+    })
+
+    // 解析错误事件
+    busboy.on('error', function (err) {
+      if (err) {
+        console.log('文件上出错')
+        reject(result)
+      }
     })
 
     req.pipe(busboy)
   })
+}
+
+module.exports = {
+  uploadFile
 }
